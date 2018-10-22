@@ -8,21 +8,20 @@
 
 #import "ViewController.h"
 #import "LXTagsView.h"
-@interface ViewController ()
+@interface ViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong)UIView *redview;
 @property (nonatomic,assign)BOOL show;
 @property (nonatomic,strong)UIButton *but;
 @property (nonatomic,strong)LXTagsView *tagsView;
 @property (nonatomic,strong)NSMutableArray *Array;
+@property (nonatomic,strong)UITableView *tableView;
 @end
 
 @implementation ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     self.Array  = [NSMutableArray array];
-    
     self.tagsView =[[LXTagsView alloc]init];
     self.tagsView.backgroundColor =[[UIColor grayColor]colorWithAlphaComponent:0.6];
     [self.view addSubview:self.tagsView];
@@ -30,58 +29,13 @@
         make.left.right.equalTo(self.view);
         make.top.mas_equalTo(self.view);
     }];
-    
     self.tagsView.clipsToBounds=YES;
-    NSArray *array = @[@"将军百战死",@"十年磨一剑，越小越就奥数"];
+    NSArray *array = @[@"将军百战死",@"十年磨一剑，越小越就奥数",@"将军百战死",@"十年磨一剑，越小越就奥数",@"将军百战死",@"十年磨一剑，越小越就奥数",@"将军百战死",@"十年磨一剑，越小越就奥数",@"将军百战死",@"十年磨一剑，越小越就奥数",@"将军百战死",@"十年磨一剑，越小越就奥数",@"将军百战死",@"十年磨一剑，越小越就奥数",@"将军百战死",@"十年磨一剑，越小越就奥数",@"将军百战死",@"十年磨一剑，越小越就奥数"@"将军百战死",@"十年磨一剑，越小越就奥数"];
     self.tagsView.dataA = array;
-    
     self.tagsView.tagClick = ^(NSString *tagTitle) {
         NSLog(@"View 打印--%@",tagTitle);
     };
-
     [self.view layoutIfNeeded];
-    
-    
-    
-//    UIView *viewbg = [[UIView alloc]init];
-//    viewbg.backgroundColor = [UIColor redColor];
-//    [self.view  addSubview:viewbg];
-//
-//    [viewbg mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.right.equalTo(self.view);
-//        make.top.mas_equalTo(self.tagsView.mas_bottom);
-//        make.height.mas_equalTo(@200);
-//    }];
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-//    UIView *view1 = [[UIView alloc]init];
-//
-//    view1.backgroundColor = [UIColor redColor];
-//    [self.view addSubview:view1];
-//
-//    [view1 mas_updateConstraints:^(MASConstraintMaker *make) {
-//        make.top.equalTo(self.view.mas_top);
-//        make.left.right.equalTo(self.view);
-//        make.height.equalTo(@200);
-//    }];
-    CGFloat h = 200;
-//    self.redview = view1;
-
     UIButton *but = [[UIButton alloc]init];
     but.backgroundColor = [UIColor greenColor];
     [but addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -93,7 +47,6 @@
     }];
     self.but = but;
     CGFloat sizeh = [self.Array[0] floatValue];
-    NSLog(@"????????????????????????????/%f????????????",sizeh);
     if (sizeh>=200) {
         _show = NO;
         but.hidden = NO;
@@ -105,7 +58,23 @@
     }else{
         _show = YES;
         but.hidden = YES;
+        [but mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.height.equalTo(@0.00001);
+        }];
     }
+    
+    _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.width) style:UITableViewStylePlain];
+    _tableView.delegate = self;
+    _tableView.dataSource = self;
+    [self.view addSubview:_tableView];
+    [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.but.mas_bottom);
+        make.left.right.bottom.equalTo(self.view);
+    }];
+    
+    
+
+
 
 }
 -(void)buttonClick:(UIButton *)sender{
@@ -126,10 +95,7 @@
             make.left.right.equalTo(self.view);
             make.height.mas_equalTo([self.Array[1] floatValue]);
         }];
-
     }
-    
-
 }
 -(void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
@@ -144,6 +110,19 @@
             }
         }
     }
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 40;
+}
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 10;
+}
+-(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    static NSString *cellID;
+    UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellID];
+    cell.textLabel.text = @"嘿嘿";
+    return cell;
+    
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
