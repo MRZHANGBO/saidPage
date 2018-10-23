@@ -12,7 +12,27 @@
 #define kWeakSelf __weak typeof(self) weakSelf = self;
 
 #define kScreenWidth         [UIScreen mainScreen].bounds.size.width
-
+#define COLORWITHRED(_redNum_,_greenNum_,_blueNum_,_alpha_)  [UIColor colorWithRed:_redNum_/255.0 green:_greenNum_/255.0  blue:_blueNum_/255.0  alpha:_alpha_]
+#define COLOR(_redNum_,_greenNum_,_blueNum_) COLORWITHRED(_redNum_, _greenNum_, _blueNum_, 1)
+#define COLOR108 COLOR(108,108,108)
+#define COLOR157 COLOR(157,157,157)
+#define COLOR234 COLOR(234,83,31)
+#define COLOR2348381 COLOR(234,83,81)
+#define COLOR102 COLOR(102,102,102)
+#define COLOR51 COLOR(51,51,51)
+#define COLOR153 COLOR(153,153,153)
+#define COLOR183 COLOR(183,181,180)
+#define COLOR180 COLOR(180,180,180)
+#define COLOR163 COLOR(163,163,163)
+#define COLOR34 COLOR(34,34,34)
+#define COLOR205 COLOR(205,53,65)
+#define COLOR202 COLOR(202,202,202)
+#define COLOR186 COLOR(186,186,186)
+#define COLOR233 COLOR(233,233,233)
+#define COLOR212 COLOR(212,212,212)
+#define COLOR242 COLOR(242,242,242)
+#define COLOR2345265 COLOR(234, 52, 65)
+#define COLOR240239244 COLOR(240,239,244)
 
 #import "Masonry.h"
 #import "UIButton+LXExpandBtn.h"

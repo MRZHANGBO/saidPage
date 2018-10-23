@@ -30,11 +30,14 @@
         make.top.mas_equalTo(self.view);
     }];
     self.tagsView.clipsToBounds=YES;
-    NSArray *array = @[@"将军百战死",@"十年磨一剑，越小越就奥数",@"将军百战死",@"十年磨一剑，越小越就奥数",@"将军百战死",@"十年磨一剑，越小越就奥数",@"将军百战死",@"十年磨一剑，越小越就奥数",@"将军百战死",@"十年磨一剑，越小越就奥数",@"将军百战死",@"十年磨一剑，越小越就奥数",@"将军百战死",@"十年磨一剑，越小越就奥数",@"将军百战死",@"十年磨一剑，越小越就奥数",@"将军百战死",@"十年磨一剑，越小越就奥数"@"将军百战死",@"十年磨一剑，越小越就奥数"];
+    NSArray *array = @[@"将军百战死",@"十年磨一剑，越小越就奥数",@"将军",@"十年磨一剑，越小越就奥数",@"将军百战死",@"十年磨一剑，越小越就奥数",@"将军百战死",@"十年磨一剑，越小越就奥数",@"将军百战死",@"十年磨一剑，越小越就奥数",@"将军百战死",@"十年磨一剑，越小越就奥数",@"将军百战死",@"十年磨一剑，越小越就奥数",@"将军百战死",@"十年磨一剑，越小越就奥数",@"将军百战死",@"十年磨一剑，越小越就奥数"@"将军百战死",@"十年磨一剑，越小越就奥数"];
     self.tagsView.dataA = array;
-    self.tagsView.tagClick = ^(NSString *tagTitle) {
-        NSLog(@"View 打印--%@",tagTitle);
+    self.tagsView.selectedBlock = ^(NSString *selecteStr) {
+        NSLog(@"打印一次%@",selecteStr);
     };
+//    self.tagsView.tagClick = ^(NSString *tagTitle) {
+//        NSLog(@"View 打印--%@",tagTitle);
+//    };
     [self.view layoutIfNeeded];
     UIButton *but = [[UIButton alloc]init];
     but.backgroundColor = [UIColor greenColor];
@@ -111,6 +114,7 @@
         }
     }
 }
+
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 40;
 }
